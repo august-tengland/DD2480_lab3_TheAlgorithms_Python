@@ -736,11 +736,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    tree = RedBlackTree(0) # I think this one needs to be here so that we have an initiated RedBlackTree
-    tree = tree.insert(-12) # and we need to add -12, 15 and 9 before removing them...
-    tree = tree.insert(15)
-    tree = tree.insert(9)
-    tree = tree.remove(15)
-    tree = tree.remove(-12)
-    tree = tree.remove(9)
-    #main()
+    main()
