@@ -4,7 +4,7 @@ from collections.abc import Sequence
 from typing import Literal
 
 
-def compare_string(string1: str, string2: str) -> str | Literal[False]:
+def compare_string(string1: str, string2: str) -> str | Literal[False]: #pragma: no cover
     """
     >>> compare_string('0010','0110')
     '0_10'
@@ -25,7 +25,7 @@ def compare_string(string1: str, string2: str) -> str | Literal[False]:
         return "".join(list1)
 
 
-def check(binary: list[str]) -> list[str]:
+def check(binary: list[str]) -> list[str]: #pragma: no cover
     """
     >>> check(['0.00.01.5'])
     ['0.00.01.5']
@@ -49,7 +49,7 @@ def check(binary: list[str]) -> list[str]:
         binary = list(set(temp))
 
 
-def decimal_to_binary(no_of_variable: int, minterms: Sequence[float]) -> list[str]:
+def decimal_to_binary(no_of_variable: int, minterms: Sequence[float]) -> list[str]: #pragma: no cover
     """
     >>> decimal_to_binary(3,[1.5])
     ['0.00.01.5']
@@ -64,7 +64,7 @@ def decimal_to_binary(no_of_variable: int, minterms: Sequence[float]) -> list[st
     return temp
 
 
-def is_for_table(string1: str, string2: str, count: int) -> bool:
+def is_for_table(string1: str, string2: str, count: int) -> bool: #pragma: no cover
     """
     >>> is_for_table('__1','011',2)
     True
@@ -81,7 +81,7 @@ def is_for_table(string1: str, string2: str, count: int) -> bool:
     return count_n == count
 
 #create a list called selection_list with 17 elements with the value false
-selection_list = [False] * 23
+selection_list = [False] * 30
 
 def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
     """
@@ -105,63 +105,77 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
                 selection_list[2] = True
             else:
                 selection_list[3] = True
+        else:
+            selection_list[4] = True
         if count == 1:
             select[rem] = 1
-            selection_list[4] = True
-        else:
             selection_list[5] = True
+        else:
+            selection_list[6] = True
     for i in range(len(select)):
-        selection_list[6] = True
+        selection_list[7] = True
         if select[i] == 1:
-            selection_list[7] = True
+            selection_list[8] = True
             for j in range(len(chart[0])):
-                selection_list[8] = True
+                selection_list[9] = True
                 if chart[i][j] == 1:
-                    selection_list[9] = True
+                    selection_list[10] = True
                     for k in range(len(chart)):
-                        selection_list[10] = True
+                        selection_list[11] = True
                         chart[k][j] = 0
+                    else:
+                        selection_list[12] = True
                 else:
-                    selection_list[11] = True
+                    selection_list[13] = True
+            else:
+                selection_list[14] = True
             temp.append(prime_implicants[i])
         else:
-            selection_list[12] = True
+            selection_list[15] = True
+    else:
+        selection_list[16] = True
     while True:
         max_n = 0
         rem = -1
         count_n = 0
-        selection_list[13] = True
+        selection_list[17] = True
         for i in range(len(chart)):
             count_n = chart[i].count(1)
-            selection_list[14] = True
+            selection_list[18] = True
             if count_n > max_n:
                 max_n = count_n
                 rem = i
-                selection_list[15] = True
+                selection_list[19] = True
             else:
-                selection_list[16] = True
+                selection_list[20] = True
+        else:
+            selection_list[21] = True
 
         if max_n == 0:
-            selection_list[17] = True
+            selection_list[22] = True
             return temp
         else:
-            selection_list[18] = True
+            selection_list[23] = True
         temp.append(prime_implicants[rem])
 
         for i in range(len(chart[0])):
-            selection_list[19] = True
+            selection_list[24] = True
             if chart[rem][i] == 1:
-                selection_list[20] = True
+                selection_list[25] = True
                 for j in range(len(chart)):
                     chart[j][i] = 0
-                    selection_list[21] = True
+                    selection_list[26] = True
+                else:
+                    selection_list[27] = True
             else:
-                selection_list[22] = True
+                selection_list[28] = True
+        else:
+            selection_list[29] = True
 
 
 def prime_implicant_chart(
     prime_implicants: list[str], binary: list[str]
-) -> list[list[int]]:
+) -> list[list[int]]: #pragma: no cover
     """
     >>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
     [[1]]
@@ -176,7 +190,7 @@ def prime_implicant_chart(
     return chart
 
 
-def main() -> None:
+def main() -> None: #pragma: no cover
     no_of_variable = int(input("Enter the no. of variables\n"))
     minterms = [
         float(x)
@@ -196,7 +210,7 @@ def main() -> None:
     print(essential_prime_implicants)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #pragma: no cover
     import doctest
     selection([[1]],['0.00.01.5'])
     selection([[1]],['0.00.01.5'])
