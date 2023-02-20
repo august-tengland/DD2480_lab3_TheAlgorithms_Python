@@ -5,13 +5,17 @@ def convert(number: int) -> str:
     """
     Given a number return the number in words.
 
-    >>> convert(123)
+    # >>> convert(123)
     'OneHundred,TwentyThree'
     """
+    reached_branches = []
     if number == 0:
         words = "Zero"
-        return words
+        reached_branches.append("11T")
+        # return words
+        return reached_branches
     else:
+        reached_branches.append("11F")
         digits = math.log10(number)
         digits = digits + 1
         singles = {}
@@ -61,51 +65,82 @@ def convert(number: int) -> str:
         digits = int(digits)
         while counter < digits:
             current = temp_num % 10
+            reached_branches.append("62T")
             if counter % 2 == 0:
+                reached_branches.append("64T")
                 addition = ""
                 if counter in placevalue.keys() and current != 0:
+                    reached_branches.append("66T")
                     addition = placevalue[counter]
-                if counter == 2:
-                    words = singles[current] + addition + words
-                elif counter == 0:
-                    if ((temp_num % 100) // 10) == 1:
-                        words = teens[current] + addition + words
-                        temp_num = temp_num // 10
-                        counter += 1
-                    else:
-                        words = singles[current] + addition + words
-
                 else:
-                    words = doubles[current] + addition + words
+                    reached_branches.append("66F")
+                if counter == 2:
+                    reached_branches.append("68T")
+                    words = singles[current] + addition + words
+                else:
+                    reached_branches.append("68F")
+                    if counter == 0:
+                        reached_branches.append("70T")
+                        if ((temp_num % 100) // 10) == 1:
+                            reached_branches.append("71T")
+                            words = teens[current] + addition + words
+                            temp_num = temp_num // 10
+                            counter += 1
+                        else:
+                            reached_branches.append("71F")
+                            words = singles[current] + addition + words
+
+                    else:
+                        reached_branches.append("70F")
+                        words = doubles[current] + addition + words
 
             else:
+                reached_branches.append("64F")
                 if counter == 1:
+                    reached_branches.append("82T")
                     if current == 1:
+                        reached_branches.append("83T")
                         words = teens[number % 10] + words
                     else:
+                        reached_branches.append("83F")
                         addition = ""
                         if counter in placevalue.keys():
+                            reached_branches.append("87T")
                             addition = placevalue[counter]
-                        words = doubles[current] + addition + words
+                        else:
+                            reached_branches.append("87F")
+                            words = doubles[current] + addition + words
                 else:
+                    reached_branches.append("82F")
                     addition = ""
                     if counter in placevalue.keys():
+                        reached_branches.append("92T")
                         if current == 0 and ((temp_num % 100) // 10) == 0:
+                            reached_branches.append("93T")
                             addition = ""
                         else:
+                            reached_branches.append("93F")
                             addition = placevalue[counter]
+                    else:
+                        reached_branches.append("92F")
                     if ((temp_num % 100) // 10) == 1:
+                        reached_branches.append("97T")
                         words = teens[current] + addition + words
                         temp_num = temp_num // 10
                         counter += 1
                     else:
+                        reached_branches.append("97F")
                         words = singles[current] + addition + words
             counter += 1
             temp_num = temp_num // 10
-    return words
+    reached_branches.append("62F")
+    reached_branches = list(set(reached_branches))
+    # return words
+    return reached_branches
 
 
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+if __name__ == "__main__":  # pragma: no cover
+    list1 = convert(123)
+    list_to_calculate = list(set(list1))
+    branch_coverage = len(list_to_calculate)/26
+    print(branch_coverage)
