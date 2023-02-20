@@ -81,7 +81,7 @@ def is_for_table(string1: str, string2: str, count: int) -> bool: #pragma: no co
     return count_n == count
 
 #create a list called selection_list with 17 elements with the value false
-selection_list = [False] * 30
+selection_list = [False] * 31
 
 def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
     """
@@ -112,65 +112,67 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
             selection_list[5] = True
         else:
             selection_list[6] = True
-    for i in range(len(select)):
+    else:
         selection_list[7] = True
+    for i in range(len(select)):
+        selection_list[8] = True
         if select[i] == 1:
-            selection_list[8] = True
+            selection_list[9] = True
             for j in range(len(chart[0])):
-                selection_list[9] = True
+                selection_list[10] = True
                 if chart[i][j] == 1:
-                    selection_list[10] = True
+                    selection_list[11] = True
                     for k in range(len(chart)):
-                        selection_list[11] = True
+                        selection_list[12] = True
                         chart[k][j] = 0
                     else:
-                        selection_list[12] = True
+                        selection_list[13] = True
                 else:
-                    selection_list[13] = True
+                    selection_list[14] = True
             else:
-                selection_list[14] = True
+                selection_list[15] = True
             temp.append(prime_implicants[i])
         else:
-            selection_list[15] = True
+            selection_list[16] = True
     else:
-        selection_list[16] = True
+        selection_list[17] = True
     while True:
         max_n = 0
         rem = -1
         count_n = 0
-        selection_list[17] = True
+        selection_list[18] = True
         for i in range(len(chart)):
             count_n = chart[i].count(1)
-            selection_list[18] = True
+            selection_list[19] = True
             if count_n > max_n:
                 max_n = count_n
                 rem = i
-                selection_list[19] = True
-            else:
                 selection_list[20] = True
+            else:
+                selection_list[21] = True
         else:
-            selection_list[21] = True
+            selection_list[22] = True
 
         if max_n == 0:
-            selection_list[22] = True
+            selection_list[23] = True
             return temp
         else:
-            selection_list[23] = True
+            selection_list[24] = True
         temp.append(prime_implicants[rem])
 
         for i in range(len(chart[0])):
-            selection_list[24] = True
+            selection_list[25] = True
             if chart[rem][i] == 1:
-                selection_list[25] = True
+                selection_list[26] = True
                 for j in range(len(chart)):
                     chart[j][i] = 0
-                    selection_list[26] = True
-                else:
                     selection_list[27] = True
+                else:
+                    selection_list[28] = True
             else:
-                selection_list[28] = True
+                selection_list[29] = True
         else:
-            selection_list[29] = True
+            selection_list[30] = True
 
 
 def prime_implicant_chart(
