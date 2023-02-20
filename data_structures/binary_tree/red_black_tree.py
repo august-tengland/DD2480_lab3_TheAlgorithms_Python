@@ -642,6 +642,73 @@ def test_insert_delete() -> bool:
         return False
     return True
 
+def test_delete_element_not_present_no_left_child() -> bool: 
+    """Test that the delete() method returns an unaltered tree when
+    element to delete does not exist (in the special case where the
+    element is expected to belong to the left subtree of the final
+    node to be examined) 
+    """
+    tree = RedBlackTree(3)
+    tree.left = RedBlackTree(1)
+    tree.left.parent = tree
+    tree.right = RedBlackTree(5)
+    tree.right.parent = tree
+    tree = tree.remove(4)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [1, 3, 5]: # Tree should remain unchanged and be returned
+        return False
+    return True
+
+def test_delete_element_not_present_no_right_child() -> bool: 
+    """Test that the delete() method returns an unaltered tree when
+    element to delete does not exist (in the special case where the
+    element is expected to belong to the right subtree of the final
+    node to be examined) 
+    """
+    tree = RedBlackTree(3)
+    tree.left = RedBlackTree(1)
+    tree.left.parent = tree
+    tree.right = RedBlackTree(5)
+    tree.right.parent = tree
+    tree = tree.remove(2)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [1, 3, 5]: # Tree should remain unchanged and be returned
+        return False
+    return True
+
+def test_delete_element_with_two_children() -> bool:
+    """Test that the delete() method can remove 
+    nodes with two children correctly"""
+    tree = RedBlackTree(3)
+    tree.left = RedBlackTree(1)
+    tree.left.parent = tree
+    tree.right = RedBlackTree(5)
+    tree.right.parent = tree
+    tree = tree.remove(3)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [1, 5]: # Element "3" should be removed correctly
+        return False
+    return True
+
+def test_delete_red_node() -> bool:
+    """Test that the delete() method can remove 
+    nodes that are colored red"""
+    tree = RedBlackTree(3)
+    tree.left = RedBlackTree(1)
+    tree.left.parent = tree
+    tree.left.color = 1
+    tree.right = RedBlackTree(5)
+    tree.right.parent = tree
+    tree.left.color = 1
+    tree = tree.remove(1)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [3, 5]:
+        return False
+    return True
 
 def test_floor_ceil() -> bool:
     """Tests the floor and ceiling functions in the tree."""
@@ -713,6 +780,10 @@ def pytests() -> None:
     assert test_insert()
     assert test_insert_and_search()
     assert test_insert_delete()
+    assert test_delete_element_not_present_no_left_child()
+    assert test_delete_element_not_present_no_right_child()
+    assert test_delete_element_with_two_children()
+    assert test_delete_red_node()
     assert test_floor_ceil()
     assert test_tree_traversal()
     assert test_tree_chaining()
