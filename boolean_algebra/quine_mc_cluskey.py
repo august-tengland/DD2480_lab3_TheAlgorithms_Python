@@ -218,5 +218,14 @@ if __name__ == "__main__": #pragma: no cover
     selection([[1],[1]],['0.00.00.5']) 
     doctest.testmod()
     print(selection_list)
+    summ = 0
+    for i in range(len(selection_list)):
+        if(selection_list[i] == True):
+            summ += 1
+        else:
+            continue
+
+    percentage_branch_coverage = (summ/len(selection_list))*100
+    print(percentage_branch_coverage)
     #main()
     
