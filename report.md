@@ -26,12 +26,13 @@ for each project, along with reason(s) why you changed to a different one.
 
 ### Complexity results
 | Function           | Manual CC (Primary) | Manual CC (Secondary) | Lizard CC   | Lizard NLOC |
-| ------------------ | ----------- | ----------- | ----------- | ----------- |
-|HSV-RGB Conv.       |             |             | 17          | 62          |
-|RB-Tree Delete      |             |             | 19          | 42          |
-|Conv. Num to Words  | 15          | 15          | 16          | 96          |
-|Quine Mc Cluskey    |             |             | 17          | 42          |
-|Points to Poly      |             |             | 21          | 86          |
+| ------------------ |---------------------|-----------------------| ----------- | ----------- |
+|HSV-RGB Conv.       | 16                  | 16                    | 17          | 62          |
+|RB-Tree Delete      |                     |                       | 19          | 42          |
+|Conv. Num to Words  | 15                  | 15                    | 16          | 96          |
+|Quine Mc Cluskey    | 17                  | 17                    | 17          | 42          |
+|Points to Poly      |                     |                       | 21          | 86          |
+
 
 1. Did all methods (tools vs. manual count) get the same result?
 2. Are the results clear?
@@ -80,7 +81,7 @@ its output?
 |RGB-HSV Conv.       |             |             |
 |RB-Tree Delete      |             |             |
 |Conv. Num to Words  | 54%         | 79%         |
-|Quine Mc Cluskey    |             |             |
+|Quine Mc Cluskey    | 61%         | 69%         |
 |Points to Poly      |             |             |
 
 ### Evaluation
@@ -110,7 +111,7 @@ git diff ...
 |RGB-HSV Conv.       |             |             |
 |RB-Tree Delete      |             |             |
 |Conv. Num to Words  | 88%         | 92%         |
-|Quine Mc Cluskey    |             |             |
+|Quine Mc Cluskey    | 94%         | 97%         |
 |Points to Poly      |             |             |
 
 ## Self-assessment: Way of working
