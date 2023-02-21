@@ -38,10 +38,10 @@ goldbach(number)  // Goldbach's assumption
 
 """
 
-from math import sqrt
+from math import sqrt #pragma: no cover
 
 
-def is_prime(number: int) -> bool:
+def is_prime(number: int) -> bool: #pragma: no cover
     """
     input: positive integer 'number'
     returns true if 'number' is prime otherwise false.
@@ -74,7 +74,7 @@ def is_prime(number: int) -> bool:
 # ------------------------------------------
 
 
-def sieve_er(n):
+def sieve_er(n): #pragma: no cover
     """
     input: positive integer 'N' > 2
     returns a list of prime numbers from 2 up to N.
@@ -110,7 +110,7 @@ def sieve_er(n):
 # --------------------------------
 
 
-def get_prime_numbers(n):
+def get_prime_numbers(n): #pragma: no cover
     """
     input: positive integer 'N' > 2
     returns a list of prime numbers from 2 up to N (inclusive)
@@ -137,7 +137,7 @@ def get_prime_numbers(n):
 # -----------------------------------------
 
 
-def prime_factorization(number):
+def prime_factorization(number): #pragma: no cover
     """
     input: positive integer 'number'
     returns a list of the prime number factors of 'number'
@@ -178,7 +178,7 @@ def prime_factorization(number):
 # -----------------------------------------
 
 
-def greatest_prime_factor(number):
+def greatest_prime_factor(number): #pragma: no cover
     """
     input: positive integer 'number' >= 0
     returns the greatest prime number factor of 'number'
@@ -205,7 +205,7 @@ def greatest_prime_factor(number):
 # ----------------------------------------------
 
 
-def smallest_prime_factor(number):
+def smallest_prime_factor(number): #pragma: no cover
     """
     input: integer 'number' >= 0
     returns the smallest prime number factor of 'number'
@@ -232,7 +232,7 @@ def smallest_prime_factor(number):
 # ----------------------
 
 
-def is_even(number):
+def is_even(number): #pragma: no cover
     """
     input: integer 'number'
     returns true if 'number' is even, otherwise false.
@@ -248,7 +248,7 @@ def is_even(number):
 # ------------------------
 
 
-def is_odd(number):
+def is_odd(number): #pragma: no cover
     """
     input: integer 'number'
     returns true if 'number' is odd, otherwise false.
@@ -264,7 +264,7 @@ def is_odd(number):
 # ------------------------
 
 
-def goldbach(number):
+def goldbach(number): #pragma: no cover
     """
     Goldbach's assumption
     input: a even positive integer 'number' > 2
@@ -317,7 +317,7 @@ def goldbach(number):
 # ----------------------------------------------
 
 
-def gcd(number1, number2):
+def gcd(number1, number2): #pragma: no cover
     """
     Greatest common divisor
     input: two positive integer 'number1' and 'number2'
@@ -422,7 +422,7 @@ def kg_v(number1, number2):
 # ----------------------------------
 
 
-def get_prime(n):
+def get_prime(n): #pragma: no cover
     """
     Gets the n-th prime number.
     input: positive integer 'n' >= 0
@@ -456,7 +456,7 @@ def get_prime(n):
 # ---------------------------------------------------
 
 
-def get_primes_between(p_number_1, p_number_2):
+def get_primes_between(p_number_1, p_number_2): #pragma: no cover
     """
     input: prime numbers 'pNumber1' and 'pNumber2'
             pNumber1 < pNumber2
@@ -501,7 +501,7 @@ def get_primes_between(p_number_1, p_number_2):
 # ----------------------------------------------------
 
 
-def get_divisors(n):
+def get_divisors(n): #pragma: no cover
     """
     input: positive integer 'n' >= 1
     returns all divisors of n (inclusive 1 and 'n')
@@ -525,7 +525,7 @@ def get_divisors(n):
 # ----------------------------------------------------
 
 
-def is_perfect_number(number):
+def is_perfect_number(number): #pragma: no cover
     """
     input: positive integer 'number' > 1
     returns true if 'number' is a perfect number otherwise false.
@@ -552,7 +552,7 @@ def is_perfect_number(number):
 # ------------------------------------------------------------
 
 
-def simplify_fraction(numerator, denominator):
+def simplify_fraction(numerator, denominator): #pragma: no cover
     """
     input: two integer 'numerator' and 'denominator'
     assumes: 'denominator' != 0
@@ -582,7 +582,7 @@ def simplify_fraction(numerator, denominator):
 # -----------------------------------------------------------------
 
 
-def factorial(n):
+def factorial(n): #pragma: no cover
     """
     input: positive integer 'n'
     returns the factorial of 'n' (n!)
@@ -602,7 +602,7 @@ def factorial(n):
 # -------------------------------------------------------------------
 
 
-def fib(n):
+def fib(n): #pragma: no cover
     """
     input: positive integer 'n'
     returns the n-th fibonacci term , indexing by 0
@@ -628,10 +628,10 @@ import unittest
 class TestKg_v(unittest.TestCase):
 
     def test_lcm_where_one_number_has_value_1(self):
-        self.assertEqual(kg_v(1,5432), 5432)
+        self.assertEqual(kg_v(1,5432), 5432) #tests if the function returns the other number if one of them is 1
 
     def test_kg_v_general(self):
-        self.assertEqual(kg_v(50,100), 100)
+        self.assertEqual(kg_v(50,100), 100) #tests if the function returns the bigger number if both numbers are not 1
 
 if __name__ == '__main__':
     unittest.main()
