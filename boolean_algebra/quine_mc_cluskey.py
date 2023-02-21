@@ -88,6 +88,12 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
 
     >>> selection([[1]],['0.00.01.5'])
     ['0.00.01.5']
+
+    >>> selection([[0]],['0.00.01.5'])
+    []
+
+    >>> selection([[1],[1]],['0.00.01.5'])
+    ['0.00.01.5']
     """
     temp = []
     select = [0] * len(chart)
@@ -167,9 +173,5 @@ def main() -> None: #pragma: no cover
 
 if __name__ == "__main__": #pragma: no cover
     import doctest
-    selection([[1]],['0.00.01.5'])
-    selection([[1]],['0.00.01.5'])
-    selection([[0]],['0.00.00.5'])
-    selection([[1],[1]],['0.00.00.5'])  
     doctest.testmod()
-    #main()
+    main()
