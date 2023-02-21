@@ -28,18 +28,22 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     >>> print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))
     f(x)=x^2*5.0+x^1*-18.0+x^0*18.0
     """
-    if len(coordinates) == 0 or not all(len(pair) == 2 for pair in coordinates):
-        raise ValueError("The program cannot work out a fitting polynomial.")
+    # Line 30 is checking two conditions, so I partitioned them into two separate functions to see if they are both covered
+    if len(coordinates) == 0: # If there are no coordinates
+        return "The program cannot work out a fitting polynomial 31A."
+    if not all(len(pair) == 2 for pair in coordinates): # If not all coordinates are in 2D
+        return "The program cannot work out a fitting polynomial 31B."
 
     if len({tuple(pair) for pair in coordinates}) != len(coordinates):
-        raise ValueError("The program cannot work out a fitting polynomial.")
+        return "The program cannot work out a fitting polynomial 34."
 
     set_x = {x for x, _ in coordinates}
-    if len(set_x) == 1:
-        return f"x={coordinates[0][0]}"
+    if len(set_x) == 1: # Test 39
+        #print("Test 39")
+        return f"x={coordinates[0][0]}" + "Test 39"
 
     if len(set_x) != len(coordinates):
-        raise ValueError("The program cannot work out a fitting polynomial.")
+        return "The program cannot work out a fitting polynomial 41."
 
     x = len(coordinates)
 
@@ -93,7 +97,8 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
 
     while count < x:
         remove_e: list[str] = solution[count].split("E")
-        if len(remove_e) > 1:
+        if len(remove_e) > 1: # This is row 97
+            print("Row 97")
             solution[count] = f"{remove_e[0]}*10^{remove_e[1]}"
         solved += f"x^{x - (count + 1)}*{solution[count]}"
         if count + 1 != x:
@@ -104,8 +109,8 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
 
 
 if __name__ == "__main__":
-    print(points_to_polynomial([]))
-    print(points_to_polynomial([[]]))
+    print(points_to_polynomial([]))   # Testing 31A
+    print(points_to_polynomial([[]]))  # Testing 31B
     print(points_to_polynomial([[1, 0], [2, 0], [3, 0]]))
     print(points_to_polynomial([[1, 1], [2, 1], [3, 1]]))
     print(points_to_polynomial([[1, 3], [2, 3], [3, 3]]))
