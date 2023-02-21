@@ -29,7 +29,7 @@ for each project, along with reason(s) why you changed to a different one.
 | ------------------ | ----------- | ----------- | ----------- | ----------- |
 |HSV-RGB Conv.       |             |             | 17          | 62          |
 |RB-Tree Delete      |             |             | 19          | 42          |
-|Conv. Num to Words  |             |             | 16          | 96          |
+|Conv. Num to Words  | 15 | 15 | 16          | 96          |
 |Quine Mc Cluskey    |             |             | 17          | 42          |
 |Points to Poly      |             |             | 21          | 86          |
 
@@ -75,13 +75,13 @@ its output?
 
 ### Coverage Results (Before Adding New Tests)
 
-| Function           | Manual BC   | Automatic BC| 
-| ------------------ | ----------- | ----------- |
-|RGB-HSV Conv.       |             |             |
-|RB-Tree Delete      |             |             |
-|Conv. Num to Words  |             |             |
-|Quine Mc Cluskey    |             |             |
-|Points to Poly      |             |             |
+| Function           | Manual BC | Automatic BC |
+| ------------------ | --------- | ------------ |
+| RGB-HSV Conv.      |           |              |
+| RB-Tree Delete     |           |              |
+| Conv. Num to Words | 54%       | 79%          |
+| Quine Mc Cluskey   |           |              |
+| Points to Poly     |           |              |
 
 ### Evaluation
 
@@ -105,13 +105,13 @@ git diff ...
 
 ### Coverage Results (After Adding New Tests)
 
-| Function           | Manual BC   | Automatic BC| 
-| ------------------ | ----------- | ----------- |
-|RGB-HSV Conv.       |             |             |
-|RB-Tree Delete      |             |             |
-|Conv. Num to Words  |             |             |
-|Quine Mc Cluskey    |             |             |
-|Points to Poly      |             |             |
+| Function           | Manual BC | Automatic BC |
+| ------------------ | --------- | ------------ |
+| RGB-HSV Conv.      |           |              |
+| RB-Tree Delete     |           |              |
+| Conv. Num to Words | 88%       | 92%          |
+| Quine Mc Cluskey   |           |              |
+| Points to Poly     |           |              |
 
 ## Self-assessment: Way of working
 
