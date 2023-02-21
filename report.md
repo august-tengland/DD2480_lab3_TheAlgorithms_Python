@@ -80,7 +80,7 @@ its output?
 |RGB-HSV Conv.       |             |             |
 |RB-Tree Delete      |             |             |
 |Conv. Num to Words  |             |             |
-|Quine Mc Cluskey    |             |             |
+|Quine Mc Cluskey    |61%          |69           |
 |Points to Poly      |             |             |
 
 ### Evaluation
@@ -110,7 +110,7 @@ git diff ...
 |RGB-HSV Conv.       |             |             |
 |RB-Tree Delete      |             |             |
 |Conv. Num to Words  |             |             |
-|Quine Mc Cluskey    |             |             |
+|Quine Mc Cluskey    | 94%         | 97%         |
 |Points to Poly      |             |             |
 
 ## Self-assessment: Way of working
