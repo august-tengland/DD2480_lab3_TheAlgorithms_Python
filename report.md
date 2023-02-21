@@ -28,7 +28,7 @@ for each project, along with reason(s) why you changed to a different one.
 | Function           | Manual CC (Primary) | Manual CC (Secondary) | Lizard CC   | Lizard NLOC |
 | ------------------ | ----------- | ----------- | ----------- | ----------- |
 |HSV-RGB Conv.       |             |             | 17          | 62          |
-|RB-Tree Delete      |             |             | 19          | 42          |
+|RB-Tree Delete      | 18          | 18          | 19          | 42          |
 |Conv. Num to Words  |             |             | 16          | 96          |
 |Quine Mc Cluskey    |             |             | 17          | 42          |
 |Points to Poly      |             |             | 21          | 86          |
