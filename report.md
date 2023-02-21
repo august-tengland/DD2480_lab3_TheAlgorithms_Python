@@ -80,7 +80,7 @@ its output?
 |RGB-HSV Conv.       |             |             |
 |RB-Tree Delete      |             |             |
 |Conv. Num to Words  |             |             |
-|Quine Mc Cluskey    |61%          |69           |
+|Quine Mc Cluskey    | 61%         | 69%         |
 |Points to Poly      |             |             |
 
 ### Evaluation
