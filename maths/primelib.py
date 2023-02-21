@@ -621,3 +621,17 @@ def fib(n):
         fib1 = tmp
 
     return ans
+
+
+import unittest
+
+class TestKg_v(unittest.TestCase):
+
+    def test_lcm_where_one_number_has_value_1(self):
+        self.assertEqual(kg_v(1,5432), 5432)
+
+    def test_kg_v_general(self):
+        self.assertEqual(kg_v(50,100), 100)
+
+if __name__ == '__main__':
+    unittest.main()
