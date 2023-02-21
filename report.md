@@ -77,7 +77,7 @@ its output?
 
 | Function           | Manual BC   | Automatic BC| 
 | ------------------ | ----------- | ----------- |
-|RGB-HSV Conv.       |             |             |
+|RGB-HSV Conv.       | 52%         | 55%         |
 |RB-Tree Delete      |             |             |
 |Conv. Num to Words  |             |             |
 |Quine Mc Cluskey    |             |             |
@@ -108,7 +108,7 @@ git diff ...
 | Function           | Manual BC   | Automatic BC| 
 | ------------------ | ----------- | ----------- |
 |RGB-HSV Conv.       |             |             |
-|RB-Tree Delete      |             |             |
+|RB-Tree Delete      | 79%         | 84%         |
 |Conv. Num to Words  |             |             |
 |Quine Mc Cluskey    |             |             |
 |Points to Poly      |             |             |
