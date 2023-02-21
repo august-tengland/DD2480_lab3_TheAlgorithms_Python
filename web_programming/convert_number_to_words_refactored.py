@@ -87,15 +87,15 @@ def convert(number: int) -> str:
     """
     Given a number return the number in words.
 
-     convert(123)
+    >>> convert(123)
     'OneHundred,TwentyThree'
-     convert(0)
+    >>> convert(0)
     'Zero'
-     convert(113)
+    >>> convert(113)
     'OneHundred,Thirteen'
-     convert(13000)
+    >>> convert(13000)
     'ThirteenThousand,'
-     convert(100010)
+    >>> convert(100010)
     'OneLakh,Ten'
     """
     if number == 0:
@@ -121,13 +121,6 @@ def convert(number: int) -> str:
     return words
 
 if __name__ == "__main__":
-    word1 = convert(123)
-    print(word1)
-    word2 = convert(0)
-    print(word2)
-    word3 = convert(113)
-    print(word3)
-    word4 = convert(13000)
-    print(word4)
-    word5 = convert(100010)
-    print(word5)
+    import doctest
+
+    doctest.testmod()
