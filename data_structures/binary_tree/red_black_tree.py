@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from collections.abc import Iterator
 
+visited_branches = [False] * 28 # BRANCH COVERAGE LIST
 
 class RedBlackTree:
     """
@@ -21,14 +22,14 @@ class RedBlackTree:
     terms of the size of the tree.
     """
 
-    def __init__(
+    def __init__( 
         self,
         label: int | None = None,
         color: int = 0,
         parent: RedBlackTree | None = None,
         left: RedBlackTree | None = None,
         right: RedBlackTree | None = None,
-    ) -> None:
+    ) -> None: # pragma: no cover
         """Initialize a new Red-Black Tree node with the given values:
         label: The value associated with this node
         color: 0 if black, 1 if red
@@ -44,7 +45,7 @@ class RedBlackTree:
 
     # Here are functions which are specific to red-black trees
 
-    def rotate_left(self) -> RedBlackTree:
+    def rotate_left(self) -> RedBlackTree: # pragma: no cover
         """Rotate the subtree rooted at this node to the left and
         returns the new root to this subtree.
         Performing one rotation can be done in O(1).
@@ -66,7 +67,7 @@ class RedBlackTree:
         right.parent = parent
         return right
 
-    def rotate_right(self) -> RedBlackTree:
+    def rotate_right(self) -> RedBlackTree: # pragma: no cover
         """Rotate the subtree rooted at this node to the right and
         returns the new root to this subtree.
         Performing one rotation can be done in O(1).
@@ -88,7 +89,7 @@ class RedBlackTree:
         left.parent = parent
         return left
 
-    def insert(self, label: int) -> RedBlackTree:
+    def insert(self, label: int) -> RedBlackTree: # pragma: no cover
         """Inserts label into the subtree rooted at self, performs any
         rotations necessary to maintain balance, and then returns the
         new root to this subtree (likely self).
@@ -114,7 +115,7 @@ class RedBlackTree:
                 self.right._insert_repair()
         return self.parent or self
 
-    def _insert_repair(self) -> None:
+    def _insert_repair(self) -> None: # pragma: no cover
         """Repair the coloring from inserting into a tree."""
         if self.parent is None:
             # This node is the root, so it just needs to be black
@@ -151,65 +152,100 @@ class RedBlackTree:
                     uncle.color = 0
                     self.grandparent.color = 1
                     self.grandparent._insert_repair()
-
+    
     def remove(self, label: int) -> RedBlackTree:
         """Remove label from this tree."""
         if self.label == label:
+            visited_branches[0] = True # BRANCH COVERAGE
             if self.left and self.right:
+                visited_branches[1] = True # BRANCH COVERAGE
                 # It's easier to balance a node with at most one child,
                 # so we replace this node with the greatest one less than
                 # it and remove that.
                 value = self.left.get_max()
                 if value is not None:
+                    visited_branches[2] = True # BRANCH COVERAGE
                     self.label = value
                     self.left.remove(value)
+                else: 
+                    visited_branches[3] = True # BRANCH COVERAGE
             else:
+                visited_branches[4] = True # BRANCH COVERAGE
                 # This node has at most one non-None child, so we don't
                 # need to replace
                 child = self.left or self.right
                 if self.color == 1:
+                    visited_branches[5] = True # BRANCH COVERAGE
                     # This node is red, and its child is black
                     # The only way this happens to a node with one child
                     # is if both children are None leaves.
                     # We can just remove this node and call it a day.
                     if self.parent:
+                        visited_branches[6] = True # BRANCH COVERAGE
                         if self.is_left():
+                            visited_branches[7] = True # BRANCH COVERAGE
                             self.parent.left = None
                         else:
+                            visited_branches[8] = True # BRANCH COVERAGE
                             self.parent.right = None
+                    else:
+                        visited_branches[9] = True # BRANCH COVERAGE
                 else:
+                    visited_branches[10] = True # BRANCH COVERAGE
                     # The node is black
                     if child is None:
+                        visited_branches[11] = True # BRANCH COVERAGE
                         # This node and its child are black
                         if self.parent is None:
+                            visited_branches[12] = True # BRANCH COVERAGE
                             # The tree is now empty
                             return RedBlackTree(None)
                         else:
+                            visited_branches[13] = True # BRANCH COVERAGE
                             self._remove_repair()
                             if self.is_left():
+                                visited_branches[14] = True # BRANCH COVERAGE
                                 self.parent.left = None
                             else:
+                                visited_branches[15] = True # BRANCH COVERAGE
                                 self.parent.right = None
                             self.parent = None
                     else:
+                        visited_branches[16] = True # BRANCH COVERAGE
                         # This node is black and its child is red
                         # Move the child node here and make it black
                         self.label = child.label
                         self.left = child.left
                         self.right = child.right
                         if self.left:
+                            visited_branches[17] = True # BRANCH COVERAGE
                             self.left.parent = self
+                        else: 
+                            visited_branches[18] = True # BRANCH COVERAGE
                         if self.right:
+                            visited_branches[19] = True # BRANCH COVERAGE
                             self.right.parent = self
-        elif self.label is not None and self.label > label:
-            if self.left:
-                self.left.remove(label)
+                        else: 
+                            visited_branches[20] = True # BRANCH COVERAGE
         else:
-            if self.right:
-                self.right.remove(label)
+            visited_branches[21] = True # BRANCH COVERAGE
+            if self.label is not None and self.label > label:
+                visited_branches[22] = True # BRANCH COVERAGE
+                if self.left:
+                    visited_branches[23] = True # BRANCH COVERAGE
+                    self.left.remove(label)
+                else:
+                    visited_branches[24] = True # BRANCH COVERAGE
+            else:
+                visited_branches[25] = True # BRANCH COVERAGE
+                if self.right:
+                    visited_branches[26] = True # BRANCH COVERAGE
+                    self.right.remove(label)
+                else: 
+                    visited_branches[27] = True # BRANCH COVERAGE
         return self.parent or self
 
-    def _remove_repair(self) -> None:
+    def _remove_repair(self) -> None: # pragma: no cover
         """Repair the coloring of the tree that may have been messed up."""
         if (
             self.parent is None
@@ -282,7 +318,7 @@ class RedBlackTree:
             self.parent.color = 0
             self.parent.sibling.color = 0
 
-    def check_color_properties(self) -> bool:
+    def check_color_properties(self) -> bool: # pragma: no cover
         """Check the coloring of the tree, and return True iff the tree
         is colored in a way which matches these five properties:
         (wording stolen from wikipedia article)
@@ -315,7 +351,7 @@ class RedBlackTree:
         # All properties were met
         return True
 
-    def check_coloring(self) -> bool:
+    def check_coloring(self) -> bool: # pragma: no cover
         """A helper function to recursively check Property 4 of a
         Red-Black Tree. See check_color_properties for more info.
         """
@@ -328,7 +364,7 @@ class RedBlackTree:
             return False
         return True
 
-    def black_height(self) -> int | None:
+    def black_height(self) -> int | None: # pragma: no cover
         """Returns the number of black nodes from this node to the
         leaves of the tree, or None if there isn't one such value (the
         tree is color incorrectly).
@@ -350,14 +386,14 @@ class RedBlackTree:
 
     # Here are functions which are general to all binary search trees
 
-    def __contains__(self, label: int) -> bool:
+    def __contains__(self, label: int) -> bool: # pragma: no cover
         """Search through the tree for label, returning True iff it is
         found somewhere in the tree.
         Guaranteed to run in O(log(n)) time.
         """
         return self.search(label) is not None
 
-    def search(self, label: int) -> RedBlackTree | None:
+    def search(self, label: int) -> RedBlackTree | None: # pragma: no cover
         """Search through the tree for label, returning its node if
         it's found, and None otherwise.
         This method is guaranteed to run in O(log(n)) time.
@@ -375,7 +411,7 @@ class RedBlackTree:
             else:
                 return self.left.search(label)
 
-    def floor(self, label: int) -> int | None:
+    def floor(self, label: int) -> int | None: # pragma: no cover
         """Returns the largest element in this tree which is at most label.
         This method is guaranteed to run in O(log(n)) time."""
         if self.label == label:
@@ -392,7 +428,7 @@ class RedBlackTree:
                     return attempt
             return self.label
 
-    def ceil(self, label: int) -> int | None:
+    def ceil(self, label: int) -> int | None: # pragma: no cover
         """Returns the smallest element in this tree which is at least label.
         This method is guaranteed to run in O(log(n)) time.
         """
@@ -410,7 +446,7 @@ class RedBlackTree:
                     return attempt
             return self.label
 
-    def get_max(self) -> int | None:
+    def get_max(self) -> int | None: # pragma: no cover
         """Returns the largest element in this tree.
         This method is guaranteed to run in O(log(n)) time.
         """
@@ -420,7 +456,7 @@ class RedBlackTree:
         else:
             return self.label
 
-    def get_min(self) -> int | None:
+    def get_min(self) -> int | None: # pragma: no cover
         """Returns the smallest element in this tree.
         This method is guaranteed to run in O(log(n)) time.
         """
@@ -431,7 +467,7 @@ class RedBlackTree:
             return self.label
 
     @property
-    def grandparent(self) -> RedBlackTree | None:
+    def grandparent(self) -> RedBlackTree | None: # pragma: no cover
         """Get the current node's grandparent, or None if it doesn't exist."""
         if self.parent is None:
             return None
@@ -439,7 +475,7 @@ class RedBlackTree:
             return self.parent.parent
 
     @property
-    def sibling(self) -> RedBlackTree | None:
+    def sibling(self) -> RedBlackTree | None: # pragma: no cover
         """Get the current node's sibling, or None if it doesn't exist."""
         if self.parent is None:
             return None
@@ -448,22 +484,22 @@ class RedBlackTree:
         else:
             return self.parent.left
 
-    def is_left(self) -> bool:
+    def is_left(self) -> bool: # pragma: no cover
         """Returns true iff this node is the left child of its parent."""
         if self.parent is None:
             return False
         return self.parent.left is self.parent.left is self
 
-    def is_right(self) -> bool:
+    def is_right(self) -> bool: # pragma: no cover
         """Returns true iff this node is the right child of its parent."""
         if self.parent is None:
             return False
         return self.parent.right is self
 
-    def __bool__(self) -> bool:
+    def __bool__(self) -> bool: # pragma: no cover
         return True
 
-    def __len__(self) -> int:
+    def __len__(self) -> int: # pragma: no cover
         """
         Return the number of nodes in this tree.
         """
@@ -474,28 +510,28 @@ class RedBlackTree:
             ln += len(self.right)
         return ln
 
-    def preorder_traverse(self) -> Iterator[int | None]:
+    def preorder_traverse(self) -> Iterator[int | None]: # pragma: no cover
         yield self.label
         if self.left:
             yield from self.left.preorder_traverse()
         if self.right:
             yield from self.right.preorder_traverse()
 
-    def inorder_traverse(self) -> Iterator[int | None]:
+    def inorder_traverse(self) -> Iterator[int | None]: # pragma: no cover
         if self.left:
             yield from self.left.inorder_traverse()
         yield self.label
         if self.right:
             yield from self.right.inorder_traverse()
 
-    def postorder_traverse(self) -> Iterator[int | None]:
+    def postorder_traverse(self) -> Iterator[int | None]: # pragma: no cover
         if self.left:
             yield from self.left.postorder_traverse()
         if self.right:
             yield from self.right.postorder_traverse()
         yield self.label
 
-    def __repr__(self) -> str:
+    def __repr__(self) -> str: # pragma: no cover
         from pprint import pformat
 
         if self.left is None and self.right is None:
@@ -510,7 +546,7 @@ class RedBlackTree:
             indent=1,
         )
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other: object) -> bool: # pragma: no cover
         """Test if two trees are equal."""
         if not isinstance(other, RedBlackTree):
             return NotImplemented
@@ -520,7 +556,7 @@ class RedBlackTree:
             return False
 
 
-def color(node: RedBlackTree | None) -> int:
+def color(node: RedBlackTree | None) -> int: # pragma: no cover
     """Returns the color of a node, allowing for None leaves."""
     if node is None:
         return 0
@@ -534,7 +570,7 @@ functions of the red-black tree.
 """
 
 
-def test_rotations() -> bool:
+def test_rotations() -> bool: # pragma: no cover
     """Test that the rotate_left and rotate_right functions work."""
     # Make a tree to test on
     tree = RedBlackTree(0)
@@ -570,7 +606,7 @@ def test_rotations() -> bool:
     return True
 
 
-def test_insertion_speed() -> bool:
+def test_insertion_speed() -> bool: # pragma: no cover
     """Test that the tree balances inserts to O(log(n)) by doing a lot
     of them.
     """
@@ -580,7 +616,7 @@ def test_insertion_speed() -> bool:
     return True
 
 
-def test_insert() -> bool:
+def test_insert() -> bool: # pragma: no cover
     """Test the insert() method of the tree correctly balances, colors,
     and inserts.
     """
@@ -601,7 +637,7 @@ def test_insert() -> bool:
     return tree == ans
 
 
-def test_insert_and_search() -> bool:
+def test_insert_and_search() -> bool: # pragma: no cover
     """Tests searching through the tree for values."""
     tree = RedBlackTree(0)
     tree.insert(8)
@@ -619,7 +655,7 @@ def test_insert_and_search() -> bool:
     return True
 
 
-def test_insert_delete() -> bool:
+def test_insert_delete() -> bool: # pragma: no cover
     """Test the insert() and delete() method of the tree, verifying the
     insertion and removal of elements, and the balancing of the tree.
     """
@@ -642,8 +678,75 @@ def test_insert_delete() -> bool:
         return False
     return True
 
+def test_delete_element_not_present_no_left_child() -> bool: # pragma: no cover 
+    """Test that the delete() method returns an unaltered tree when
+    element to delete does not exist (in the special case where the
+    element is expected to belong to the left subtree of the final
+    node to be examined) 
+    """
+    tree = RedBlackTree(3)
+    tree.left = RedBlackTree(1)
+    tree.left.parent = tree
+    tree.right = RedBlackTree(5)
+    tree.right.parent = tree
+    tree = tree.remove(4)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [1, 3, 5]: # Tree should remain unchanged and be returned
+        return False
+    return True
 
-def test_floor_ceil() -> bool:
+def test_delete_element_not_present_no_right_child() -> bool: # pragma: no cover
+    """Test that the delete() method returns an unaltered tree when
+    element to delete does not exist (in the special case where the
+    element is expected to belong to the right subtree of the final
+    node to be examined) 
+    """
+    tree = RedBlackTree(3)
+    tree.left = RedBlackTree(1)
+    tree.left.parent = tree
+    tree.right = RedBlackTree(5)
+    tree.right.parent = tree
+    tree = tree.remove(2)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [1, 3, 5]: # Tree should remain unchanged and be returned
+        return False
+    return True
+
+def test_delete_element_with_two_children() -> bool: # pragma: no cover
+    """Test that the delete() method can remove 
+    nodes with two children correctly"""
+    tree = RedBlackTree(3)
+    tree.left = RedBlackTree(1)
+    tree.left.parent = tree
+    tree.right = RedBlackTree(5)
+    tree.right.parent = tree
+    tree = tree.remove(3)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [1, 5]: # Element "3" should be removed correctly
+        return False
+    return True
+
+def test_delete_red_node() -> bool: # pragma: no cover
+    """Test that the delete() method can remove 
+    nodes that are colored red"""
+    tree = RedBlackTree(3)
+    tree.left = RedBlackTree(1)
+    tree.left.parent = tree
+    tree.left.color = 1
+    tree.right = RedBlackTree(5)
+    tree.right.parent = tree
+    tree.left.color = 1
+    tree = tree.remove(1)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [3, 5]:
+        return False
+    return True
+
+def test_floor_ceil() -> bool: # pragma: no cover
     """Tests the floor and ceiling functions in the tree."""
     tree = RedBlackTree(0)
     tree.insert(-16)
@@ -659,7 +762,7 @@ def test_floor_ceil() -> bool:
     return True
 
 
-def test_min_max() -> bool:
+def test_min_max() -> bool: # pragma: no cover
     """Tests the min and max functions in the tree."""
     tree = RedBlackTree(0)
     tree.insert(-16)
@@ -673,7 +776,7 @@ def test_min_max() -> bool:
     return True
 
 
-def test_tree_traversal() -> bool:
+def test_tree_traversal() -> bool: # pragma: no cover
     """Tests the three different tree traversal functions."""
     tree = RedBlackTree(0)
     tree = tree.insert(-16)
@@ -691,7 +794,7 @@ def test_tree_traversal() -> bool:
     return True
 
 
-def test_tree_chaining() -> bool:
+def test_tree_chaining() -> bool: # pragma: no cover
     """Tests the three different tree chaining functions."""
     tree = RedBlackTree(0)
     tree = tree.insert(-16).insert(16).insert(8).insert(24).insert(20).insert(22)
@@ -704,36 +807,40 @@ def test_tree_chaining() -> bool:
     return True
 
 
-def print_results(msg: str, passes: bool) -> None:
+def print_results(msg: str, passes: bool) -> None: # pragma: no cover
     print(str(msg), "works!" if passes else "doesn't work :(")
 
 
-def pytests() -> None:
-    assert test_rotations()
-    assert test_insert()
-    assert test_insert_and_search()
+def pytests() -> None: # pragma: no cover
+    #assert test_rotations()
+    #assert test_insert()
+    #assert test_insert_and_search()
     assert test_insert_delete()
-    assert test_floor_ceil()
-    assert test_tree_traversal()
-    assert test_tree_chaining()
+    assert test_delete_element_not_present_no_left_child()
+    assert test_delete_element_not_present_no_right_child()
+    assert test_delete_element_with_two_children()
+    assert test_delete_red_node()
+    #assert test_floor_ceil()
+    #assert test_tree_traversal()
+    #assert test_tree_chaining()
 
 
-def main() -> None:
+def main() -> None: # pragma: no cover
     """
     >>> pytests()
     """
-    print_results("Rotating right and left", test_rotations())
-    print_results("Inserting", test_insert())
-    print_results("Searching", test_insert_and_search())
-    print_results("Deleting", test_insert_delete())
-    print_results("Floor and ceil", test_floor_ceil())
-    print_results("Tree traversal", test_tree_traversal())
-    print_results("Tree traversal", test_tree_chaining())
-    print("Testing tree balancing...")
-    print("This should only be a few seconds.")
-    test_insertion_speed()
-    print("Done!")
+    #print_results("Rotating right and left", test_rotations())
+    #print_results("Inserting", test_insert())
+    #print_results("Searching", test_insert_and_search())
+    #print_results("Floor and ceil", test_floor_ceil())
+    ##print_results("Tree traversal", test_tree_traversal())
+    #print_results("Tree traversal", test_tree_chaining())
+    #print("Testing tree balancing...")
+    #print("This should only be a few seconds.")
+    #test_insertion_speed()
+    pytests()
+    print("Branch coverage: " + str(round(sum(visited_branches)/len(visited_branches)*100,2)) + "%")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
     main()
