@@ -7,6 +7,8 @@ def convert(number: int) -> str:
 
     >>> convert(123)
     'OneHundred,TwentyThree'
+    >>> convert('abc')
+    'TypeError: must be real number, not str'
     >>> convert(0)
     'Zero'
     >>> convert(113)
@@ -15,6 +17,7 @@ def convert(number: int) -> str:
     'ThirteenThousand,'
     >>> convert(100010)
     'OneLakh,Ten'
+    
     """
     if number == 0:
         words = "Zero"
