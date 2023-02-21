@@ -75,13 +75,13 @@ its output?
 
 ### Coverage Results (Before Adding New Tests)
 
-| Function           | Manual BC | Automatic BC |
-| ------------------ | --------- | ------------ |
-| RGB-HSV Conv.      |           |              |
-| RB-Tree Delete     |           |              |
-| Conv. Num to Words | 54%       | 79%          |
-| Quine Mc Cluskey   |           |              |
-| Points to Poly     |           |              |
+| Function           | Manual BC   | Automatic BC| 
+| ------------------ | ----------- | ----------- |
+|RGB-HSV Conv.       |             |             |
+|RB-Tree Delete      |             |             |
+|Conv. Num to Words  | 54%         | 79%         |
+|Quine Mc Cluskey    |             |             |
+|Points to Poly      |             |             |
 
 ### Evaluation
 
@@ -105,13 +105,13 @@ git diff ...
 
 ### Coverage Results (After Adding New Tests)
 
-| Function           | Manual BC | Automatic BC |
-| ------------------ | --------- | ------------ |
-| RGB-HSV Conv.      |           |              |
-| RB-Tree Delete     |           |              |
-| Conv. Num to Words | 88%       | 92%          |
-| Quine Mc Cluskey   |           |              |
-| Points to Poly     |           |              |
+| Function           | Manual BC   | Automatic BC| 
+| ------------------ | ----------- | ----------- |
+|RGB-HSV Conv.       |             |             |
+|RB-Tree Delete      |             |             |
+|Conv. Num to Words  | 88%         | 92%         |
+|Quine Mc Cluskey    |             |             |
+|Points to Poly      |             |             |
 
 ## Self-assessment: Way of working
 
