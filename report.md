@@ -24,9 +24,20 @@ for each project, along with reason(s) why you changed to a different one.
 
 ## Complexity
 
-1. What are your results for ten complex functions?
-   * Did all methods (tools vs. manual count) get the same result?
-   * Are the results clear?
+### Complexity results
+| Function           | Manual CC (Primary) | Manual CC (Secondary) | Lizard CC   | Lizard NLOC |
+| ------------------ |---------------------|-----------------------| ----------- | ----------- |
+|HSV-RGB Conv.       | 13                  | 13                    | 17          | 62          |
+|RB-Tree Delete      | 18                  | 18                    | 19          | 42          |
+|Conv. Num to Words  | 15                  | 15                    | 16          | 96          |
+|Quine Mc Cluskey    | 17                  | 17                    | 17          | 42          |
+|Points to Poly      |                     |                       | 21          | 86          |
+|kg_v                | 16                  | 16                    | 17          | 86          |
+
+
+1. Did all methods (tools vs. manual count) get the same result?
+2. Are the results clear?
+### Question Regarding Complexity
 2. Are the functions just complex, or also long?
 3. What is the purpose of the functions?
 4. Are exceptions taken into account in the given measurements?
@@ -64,6 +75,17 @@ git diff ...
 What kinds of constructs does your tool support, and how accurate is
 its output?
 
+### Coverage Results (Before Adding New Tests)
+
+| Function           | Manual BC   | Automatic BC| 
+| ------------------ | ----------- | ----------- |
+|RGB-HSV Conv.       |             |             |
+|RB-Tree Delete      | 52%         | 55%         |
+|Conv. Num to Words  | 54%         | 79%         |
+|Quine Mc Cluskey    | 61%         | 69%         |
+|Points to Poly      |             |             |
+|kg_v                | N/A         | 3%          |
+
 ### Evaluation
 
 1. How detailed is your coverage measurement?
@@ -84,7 +106,16 @@ Test cases added:
 
 git diff ...
 
-Number of test cases added: two per team member (P) or at least four (P+).
+### Coverage Results (After Adding New Tests)
+
+| Function           | Manual BC   | Automatic BC| 
+| ------------------ | ----------- | ----------- |
+|RGB-HSV Conv.       |             |             |
+|RB-Tree Delete      | 79%         | 84%         |
+|Conv. Num to Words  | 88%         | 92%         |
+|Quine Mc Cluskey    | 94%         | 97%         |
+|Points to Poly      |             |             |
+|kg_v                | N/A         | 82%         |
 
 ## Self-assessment: Way of working
 
