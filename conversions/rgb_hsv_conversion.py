@@ -13,6 +13,7 @@ https://en.wikipedia.org/wiki/HSL_and_HSV).
 
 cov_array = [False] * 9
 
+
 def hsv_to_rgb(hue: float, saturation: float, value: float) -> list[int]:
     """
     Conversion from the HSV-representation to the RGB-representation.
@@ -167,6 +168,7 @@ def approximately_equal_hsv(hsv_1: list[float], hsv_2: list[float]) -> bool:
     check_value = abs(hsv_1[2] - hsv_2[2]) < 0.002
 
     return check_hue and check_saturation and check_value
+
 
 if __name__ == "__main__":
     hsv_to_rgb(0, 0, 0)
