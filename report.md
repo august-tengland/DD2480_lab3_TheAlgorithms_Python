@@ -24,9 +24,18 @@ for each project, along with reason(s) why you changed to a different one.
 
 ## Complexity
 
-1. What are your results for ten complex functions?
-   * Did all methods (tools vs. manual count) get the same result?
-   * Are the results clear?
+### Complexity results
+| Function           | Manual CC (Primary) | Manual CC (Secondary) | Lizard CC   | Lizard NLOC |
+| ------------------ | ----------- | ----------- | ----------- | ----------- |
+|HSV-RGB Conv.       |             |             | 17          | 62          |
+|RB-Tree Delete      |             |             | 19          | 42          |
+|Conv. Num to Words  |             |             | 16          | 96          |
+|Quine Mc Cluskey    |             |             | 17          | 42          |
+|Points to Poly      |             |             | 21          | 86          |
+
+1. Did all methods (tools vs. manual count) get the same result?
+2. Are the results clear?
+### Question Regarding Complexity
 2. Are the functions just complex, or also long?
 3. What is the purpose of the functions?
 4. Are exceptions taken into account in the given measurements?
@@ -64,6 +73,16 @@ git diff ...
 What kinds of constructs does your tool support, and how accurate is
 its output?
 
+### Coverage Results (Before Adding New Tests)
+
+| Function           | Manual BC   | Automatic BC| 
+| ------------------ | ----------- | ----------- |
+|RGB-HSV Conv.       |             |             |
+|RB-Tree Delete      |             |             |
+|Conv. Num to Words  |             |             |
+|Quine Mc Cluskey    |             |             |
+|Points to Poly      |             |             |
+
 ### Evaluation
 
 1. How detailed is your coverage measurement?
@@ -84,7 +103,15 @@ Test cases added:
 
 git diff ...
 
-Number of test cases added: two per team member (P) or at least four (P+).
+### Coverage Results (After Adding New Tests)
+
+| Function           | Manual BC   | Automatic BC| 
+| ------------------ | ----------- | ----------- |
+|RGB-HSV Conv.       |             |             |
+|RB-Tree Delete      |             |             |
+|Conv. Num to Words  |             |             |
+|Quine Mc Cluskey    |             |             |
+|Points to Poly      |             |             |
 
 ## Self-assessment: Way of working
 
