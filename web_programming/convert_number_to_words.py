@@ -7,6 +7,14 @@ def convert(number: int) -> str:
 
     >>> convert(123)
     'OneHundred,TwentyThree'
+    >>> convert(0)
+    'Zero'
+    >>> convert(113)
+    'OneHundred,Thirteen'
+    >>> convert(13000)
+    'ThirteenThousand,'
+    >>> convert(100010)
+    'OneLakh,Ten'
     """
     if number == 0:
         words = "Zero"
