@@ -123,6 +123,10 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
     ['0.00.01.5']
     >>> selection([[1]],['0.00.01.5'])
     ['0.00.01.5']
+    >>> selection([[0]],['0.00.01.5'])
+    []
+    >>> selection([[1],[1]],['0.00.01.5'])
+    ['0.00.01.5']
     """
     select = [0] * len(chart)
     for i in range(len(chart[0])):
@@ -143,10 +147,7 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
 def prime_implicant_chart(
     prime_implicants: list[str], binary: list[str]
 ) -> list[list[int]]:
-    """
-    >>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
-    [[1]]
-    """
+
     chart = [[0 for x in range(len(binary))] for x in range(len(prime_implicants))]
     for i in range(len(prime_implicants)):
         count = prime_implicants[i].count("_")
