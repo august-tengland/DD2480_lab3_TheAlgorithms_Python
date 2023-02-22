@@ -97,6 +97,8 @@ def convert(number: int) -> str:
     'ThirteenThousand,'
      convert(100010)
     'OneLakh,Ten'
+     convert('abc')
+    'TypeError: must be real number, not str'
     """
     if number == 0:
         return "Zero"
