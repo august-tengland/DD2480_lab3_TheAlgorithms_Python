@@ -118,3 +118,5 @@ if __name__ == "__main__":
     print(points_to_polynomial([[1, 0], [2, 0], [2, 0], [3, 0]]))  
     # NEW TEST for row 38:
     print(points_to_polynomial([[1, 0]]))
+    # NEW TEST for row 41:
+    print(points_to_polynomial([[1, 1], [2, 2], [1, 3], [2, 4]]))
