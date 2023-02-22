@@ -104,6 +104,7 @@ The function hill_climbing is part of the SearchProblem class and this function 
 |Points to Poly      | 16                  | 16                    | 21          | 86          |
 |kg_v\*              | 16                  | 16                    | 17          | 86          |
 
+
 \*NOTE: Kg_v is included as an extra function since we added tests to it as well (for P+).
 
 **1. Did all methods (tools vs. manual count) get the same result?**  
@@ -167,6 +168,7 @@ We implemented manual branch coverage analysis in the simple way that the assign
 
 \*NOTE: We calculated the branch coverage of kg_v using Coverage.py but not manually, since we only wanted to verify that our new test was productive (for P+). 
 
+
 ### Evaluation
 
 **1. How detailed is your coverage measurement?**  
@@ -227,6 +229,7 @@ The tests are located between lines @626-637@
 |Quine Mc Cluskey    | 94%         | 97%         |
 |Points to Poly      | 98%         | 98%         |
 |kg_v                | N/A\*       | 82%         |
+
 
 \*NOTE: We calculated the branch coverage of kg_v using Coverage.py but not manually, since we only wanted to verify that our new test was productive (for P+). 
 
