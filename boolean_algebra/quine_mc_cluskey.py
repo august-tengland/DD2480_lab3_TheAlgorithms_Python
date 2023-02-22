@@ -81,31 +81,8 @@ def is_for_table(string1: str, string2: str, count: int) -> bool: #pragma: no co
     return count_n == count
 
 
-def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
-    """
-    >>> selection([[1]],['0.00.01.5'])
-    ['0.00.01.5']
-
-    >>> selection([[1]],['0.00.01.5'])
-    ['0.00.01.5']
-
-    >>> selection([[0]],['0.00.01.5'])
-    []
-
-    >>> selection([[1],[1]],['0.00.01.5'])
-    ['0.00.01.5']
-    """
+def find_essential_primes(chart: list[list[int]], select: list[int], prime_implicants: list[str]) -> list[str]: #pragma: no cover
     temp = []
-    select = [0] * len(chart)
-    for i in range(len(chart[0])):
-        count = 0
-        rem = -1
-        for j in range(len(chart)):
-            if chart[j][i] == 1:
-                count += 1
-                rem = j
-        if count == 1:
-            select[rem] = 1
     for i in range(len(select)):
         if select[i] == 1:
             for j in range(len(chart[0])):
@@ -113,6 +90,10 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
                     for k in range(len(chart)):
                         chart[k][j] = 0
             temp.append(prime_implicants[i])
+    return temp
+
+def select_remaining_primes(chart: list[list[int]], prime_implicants: list[str]) -> list[str]: #pragma: no cover
+    temp = []
     while True:
         max_n = 0
         rem = -1
@@ -132,15 +113,40 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
             if chart[rem][i] == 1:
                 for j in range(len(chart)):
                     chart[j][i] = 0
+    return temp
 
+
+def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
+    """
+    >>> selection([[1]],['0.00.01.5'])
+    ['0.00.01.5']
+    >>> selection([[1]],['0.00.01.5'])
+    ['0.00.01.5']
+    >>> selection([[0]],['0.00.01.5'])
+    []
+    >>> selection([[1],[1]],['0.00.01.5'])
+    ['0.00.01.5']
+    """
+    select = [0] * len(chart)
+    for i in range(len(chart[0])):
+        count = 0
+        rem = -1
+        for j in range(len(chart)):
+            if chart[j][i] == 1:
+                count += 1
+                rem = j
+        if count == 1:
+            select[rem] = 1
+
+    essential_prime_implicants = find_essential_primes(chart, select, prime_implicants)
+    remaining_prime_implicants = select_remaining_primes(chart, prime_implicants)
+
+    return essential_prime_implicants + remaining_prime_implicants
 
 def prime_implicant_chart(
     prime_implicants: list[str], binary: list[str]
 ) -> list[list[int]]: #pragma: no cover
-    """
-    >>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
-    [[1]]
-    """
+
     chart = [[0 for x in range(len(binary))] for x in range(len(prime_implicants))]
     for i in range(len(prime_implicants)):
         count = prime_implicants[i].count("_")
@@ -175,3 +181,4 @@ if __name__ == "__main__": #pragma: no cover
     import doctest
     doctest.testmod()
     main()
+    
