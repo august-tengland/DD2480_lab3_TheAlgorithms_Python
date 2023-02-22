@@ -31,7 +31,7 @@ for each project, along with reason(s) why you changed to a different one.
 |RB-Tree Delete      | 18                  | 18                    | 19          | 42          |
 |Conv. Num to Words  | 15                  | 15                    | 16          | 96          |
 |Quine Mc Cluskey    | 17                  | 17                    | 17          | 42          |
-|Points to Poly      |                     |                       | 21          | 86          |
+|Points to Poly      | 16                  | 16                    | 21          | 86          |
 |kg_v                | 16                  | 16                    | 17          | 86          |
 
 
@@ -83,7 +83,7 @@ its output?
 |RB-Tree Delete      | 52%         | 55%         |
 |Conv. Num to Words  | 54%         | 79%         |
 |Quine Mc Cluskey    | 61%         | 69%         |
-|Points to Poly      |             |             |
+|Points to Poly      | 92%         |             |
 |kg_v                | N/A         | 3%          |
 
 ### Evaluation
@@ -114,7 +114,7 @@ git diff ...
 |RB-Tree Delete      | 79%         | 84%         |
 |Conv. Num to Words  | 88%         | 92%         |
 |Quine Mc Cluskey    | 94%         | 97%         |
-|Points to Poly      |             |             |
+|Points to Poly      | 98%         |   %         |
 |kg_v                | N/A         | 82%         |
 
 ## Self-assessment: Way of working
