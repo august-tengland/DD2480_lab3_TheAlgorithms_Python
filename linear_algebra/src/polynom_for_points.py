@@ -63,23 +63,7 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
         vector.append(coordinates[count_of_line][1])
         count_of_line += 1
 
-    count = 0
-
-    while count < x:
-        zahlen = 0
-        while zahlen < x:
-            if count == zahlen:
-                zahlen += 1
-            if zahlen == x:
-                break
-            bruch = matrix[zahlen][count] / matrix[count][count]
-            for counting_columns, item in enumerate(matrix[count]):
-                # manipulating all the values in the matrix
-                matrix[zahlen][counting_columns] -= item * bruch
-            # manipulating the values in the vector
-            vector[zahlen] -= vector[count] * bruch
-            zahlen += 1
-        count += 1
+    mainpulate_matrix_values(x, matrix, vector)
 
     count = 0
     # make solutions
@@ -102,6 +86,23 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
 
     return solved
 
+def mainpulate_matrix_values(x, matrix, vector):
+    count = 0
+    while count < x:
+        zahlen = 0
+        while zahlen < x:
+            if count == zahlen:
+                zahlen += 1
+            if zahlen == x:
+                break
+            bruch = matrix[zahlen][count] / matrix[count][count]
+            for counting_columns, item in enumerate(matrix[count]):
+                # manipulating all the values in the matrix
+                matrix[zahlen][counting_columns] -= item * bruch
+            # manipulating the values in the vector
+            vector[zahlen] -= vector[count] * bruch
+            zahlen += 1
+        count += 1
 
 if __name__ == "__main__":
     print(points_to_polynomial([]))
