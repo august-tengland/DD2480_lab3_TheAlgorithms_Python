@@ -127,6 +127,51 @@ No, the documentation in the code is lacking and is also very inconsistent betwe
 
 In the section below we detail our refactoring plans for five functions with high CC, as well as where to find the actual refactorings in the project (in the "master" branch, see "master-before-tests" to view the functions before refactoring).  
 
+### Quine Mc Cluskey - Nicholas von Butovitsch
+
+The function has a relatively high cyclomatic complexity of 16 (according to our metric decisions - endpoints + 2). I would argue that it isn’t very justified and can be seen as unnecessarily long as it aims to perform several steps. Therefore, it makes sense to separate it into a few distinct steps. To reduce the cyclical complexity, the selection function can be divided into three separate functions:
+
+essential_primes(chart: list[list[int]]) -> list[str]:   
+This function will take a chart as input and returns a list of essential prime implicants. It implements the first step of the selection process described above.
+
+select_remaining(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:    
+This function will take a chart and the list of prime implicants as input, and returns a list of remaining prime implicants that are not essential but are still required to be selected.
+
+selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:   
+This function takes the chart and the list of prime implicants as input, and returns the complete set of prime implicants for the minimized boolean expression. It calls the essential_primes() and select_remaining() functions internally to implement the complete selection.  
+
+This will lower the cyclical complexity significantly, the results are shown in the master branch selection@84-144@.\boolean_algebra\quine_mc_cluskey.py
+with a cyclomatic complexity of 6, 7, 5 according to our metric.   
+
+### Convert number to words - Tianyu Deng
+The function convert@4-105@.\web_programming\convert_number_to_words.py has high cyclomatic complexity and this leads to poor readability. I refactored the function to reduce cyclomatic complexity. My first idea was to put special cases in a function, but that's not very easy to do. A simpler refactoring is to classify even and odd digits:
+The functions convert_when_even_digit and convert_when_odd_digit are used to define the rules for generating words. The special cases are still discussed separately in the functions, that is, when the digits are ones, tens and hundreds. The readability of these two functions is still not high, because the design logic of the functions is not very clear.
+Thus, the original function convert only needs to consider whether the number is 0 or not, and then call the two functions mentioned above as help functions in a while loop.
+Refactoring reduces cyclomatic complexity of functions. The cyclomatic complexities of the three new functions are 6, 6, 3. The refactored file is located at the master branch .\web_programming\convert_number_to_words.py
+
+### HSV to RGB conversion - Kaan Uçar
+In my opinion, the function is quite a simple one and it did not need refactoring, however, to reduce the complexity I simply put the switch on the hue_section (mentioned above) in another function called helper since it is simply a series of if statements. Nevertheless, I need to say that this worsens the readability of the code due to its simplicity beforehand. Additionally, the cyclomatic complexity of the original function is reduced but we simply transferred the complexity from the original function to the helper function.
+The refactored file is located at the master branch : hsv_to_rgb@15-81@.\conversions\rgb_hsv_conversion.py 
+
+### Point to Polynomials - Anna Kristiansson
+This function had (according to Lizard) a CC of 21. I don’t think the readability was too bad, but you need to have an understanding of how polynomials relate to points in order to be able to read it correctly, which isn’t very handy if you don’t have a lot of time. I refactored this function by moving an extensive while loop out of the main points_to_polynomial(coordinates: list[list[int]]) into a helper function.
+Another way to do it is by creating a helper function for the error controls, but I didn’t do this.
+You can find the refactored file in the main branch at points_to_polynomial @linear_algebra/src/polynom_for_points.py
+
+### “Remove” in Red Black Tree - August Tengland
+The “remove” function in red_black_tree.py had a previous cyclomatic complexity of 19 (using our metric of decisions - endpoints + 2). This complexity is arguably justified however there are a number of ways to decrease it. One of the easiest is to partition the remove() function into two steps (or functions), one which finds the node to remove, and one that alters the tree: 
+- remove(self), which recursively searches the tree for the node to remove
+- \_remove_this_node(self): which alters the tree for removal of the node as specified by “self”.  
+
+The removal function is also very distinct in how it handles the removal or “red” versus “black” nodes, something that allows for further partitioning:  
+- remove(self), which recursively searches the tree for the node to remove  
+- \_remove_this_node(self): determines color of node to remove and call further:
+- \_remove_red(self,child): Removal of a red node 
+- \_remove_red(self,child): Removal of a red node 
+
+After refactoring, the remove() function went from a CC of 19 to 6 (a 68% reduction) and all of the created helper functions also have a CC equal or lesser than 6. 
+
+
 ## Coverage
 
 The section below details our manual and automatic branch coverage of the 5 selected functions.
