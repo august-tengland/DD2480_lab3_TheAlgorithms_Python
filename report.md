@@ -285,3 +285,11 @@ We believe that our group is operating in the “Performing” state. We think t
 ## Overall experience
 
 This has been an informative assignment which has covered some of the basics in code testing. Some of the group members are reading the "software reliablity" course and have already encountered branch coverage, however it was useful to test tools for applying the theory. The group does however conclude that the use of git in this project was subpar, the conventions that were put up were generally good ideas however they were not that well-suited for a project of this scope. If we would've have re-done the assignment, we would probably have used git in a more flexible fashion and relied on other tools for documenting and writing the report.
+
+## Aiming for P+
+
+The following members are aiming for P+:
+- August Tengland
+- Nicholas von Butovitsch
+- Tianyu Deng
+- Kaan Uçar
